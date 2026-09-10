@@ -22,28 +22,28 @@
                 </svg>
             </div>
 
-            <!-- 5 High Vertical Rectangles with 3:1 photo-to-gap ratio (Static Visual Placeholders) -->
+            <!-- 5 High Vertical Rectangles with 3:1 photo-to-gap ratio (Clean Photo Strip) -->
             <div class="grid grid-cols-5 w-full grow min-h-0" style="gap: calc(100% / 19);">
-                @foreach($heroPhotos as $photo)
+                @foreach($photos as $photoKey => $photo)
+                    @php
+                        $photoSrc = is_array($photo) ? ($photo['src'] ?? null) : $photo;
+                        $photoAlt = is_array($photo) ? ($photo['alt'] ?? '') : '';
+                    @endphp
                     <div class="group relative flex flex-col justify-end overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900/60 shadow-2xs transition-all duration-300 hover:border-[#FF5500] dark:hover:border-[#FF5500] h-full w-full">
-                        <!-- Static Visual Photo Placeholder Canvas -->
-                        <div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center bg-neutral-50/60 dark:bg-neutral-900/50">
-                            <div class="rounded-full bg-neutral-200/70 dark:bg-neutral-800/80 p-2 sm:p-2.5 mb-1.5 text-neutral-400 dark:text-neutral-500 group-hover:text-[#FF5500] group-hover:scale-110 transition-all duration-300">
-                                <svg class="size-4 sm:size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                                </svg>
+                        @if(!empty($photoSrc))
+                            <img src="{{ $photoSrc }}"
+                                 alt="{{ $photoAlt }}"
+                                 class="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105" />
+                        @else
+                            <!-- Clean Photo Placeholder (no name or title on screen) -->
+                            <div class="absolute inset-0 flex items-center justify-center p-2 bg-neutral-50/60 dark:bg-neutral-900/50">
+                                <div class="rounded-full bg-neutral-200/70 dark:bg-neutral-800/80 p-2 sm:p-2.5 text-neutral-400 dark:text-neutral-500 group-hover:text-[#FF5500] group-hover:scale-110 transition-all duration-300">
+                                    <svg class="size-4 sm:size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                    </svg>
+                                </div>
                             </div>
-                            <span class="font-mono text-[9px] sm:text-[11px] text-neutral-400 dark:text-neutral-500 tracking-wider uppercase font-medium">
-                                Photo 0{{ $photo['id'] }}
-                            </span>
-                        </div>
-
-                        <!-- Bottom Monospace Label Overlay -->
-                        <div class="relative z-10 p-2 sm:p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white w-full">
-                            <p class="font-mono text-[9px] sm:text-[11px] md:text-xs font-medium tracking-tight truncate text-neutral-200">
-                                {{ $photo['label'] }}
-                            </p>
-                        </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

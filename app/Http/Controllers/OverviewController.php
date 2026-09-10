@@ -17,12 +17,12 @@ class OverviewController extends Controller
             'Pellentesque ipsum. Cras elit nisl, facilisis eget, ultricies et, adipiscing ut, neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.',
         ];
 
-        $heroPhotos = [
-            ['id' => 1, 'label' => 'Photo 01 // Field Work'],
-            ['id' => 2, 'label' => 'Photo 02 // Security & Systems'],
-            ['id' => 3, 'label' => 'Photo 03 // Systems Architecture'],
-            ['id' => 4, 'label' => 'Photo 04 // Research & Analysis'],
-            ['id' => 5, 'label' => 'Photo 05 // Executive & Leadership'],
+        $photos = [
+            'photo1' => null,
+            'photo2' => null,
+            'photo3' => null,
+            'photo4' => null,
+            'photo5' => null,
         ];
 
         $experiences = [
@@ -108,6 +108,6 @@ class OverviewController extends Controller
             ],
         ];
 
-        return view('overview', compact('bio', 'heroPhotos', 'experiences', 'educations'));
+        return view('overview', compact('bio', 'photos', 'experiences', 'educations'));
     }
 }
