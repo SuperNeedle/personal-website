@@ -4,6 +4,8 @@ services:
     container_name: personal-website
     ports:
       - "8080:80"
+    volumes:
+      - ./.env:/var/www/html/.env
     mem_limit: 512m
     restart: unless-stopped
     environment:
