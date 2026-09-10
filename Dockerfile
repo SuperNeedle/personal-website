@@ -49,7 +49,7 @@ RUN apk add --no-cache \
     && apk del .build-deps
 
 # Install Composer from official image
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=docker.io/library/composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
