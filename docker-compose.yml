@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./.env:/var/www/html/.env
+      - ./.env:/var/www/html/.env:Z
     mem_limit: 512m
     restart: unless-stopped
     environment:
