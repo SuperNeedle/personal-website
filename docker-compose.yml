@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: personal-website
+    ports:
+      - "8080:80"
+    mem_limit: 512m
+    restart: unless-stopped
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false

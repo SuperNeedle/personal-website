@@ -1,0 +1,12 @@
+.git
+.gitignore
+node_modules
+vendor
+.env
+.env.*
+storage/logs/*
+tests
+AGENTS.md
+docs
+.phpunit.result.cache
+.editorconfig
