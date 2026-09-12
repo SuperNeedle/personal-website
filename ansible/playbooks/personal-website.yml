@@ -1,0 +1,6 @@
+---
+- hosts: thinkpad
+  become: true
+  roles:
+    - common
+    - personal_website

@@ -1,0 +1,8 @@
+---
+# NOTE: Currently SQLite-free (SESSION_DRIVER=file, CACHE_STORE=file).
+# Planned: migrate to MySQL once real data models exist (post UI/UX phase).
+# When that happens, add a mysql role (separate container, per docker-compose
+# convention) — do not bolt DB config onto this role.
+
+tunnel_id: "1c3553e2-c35f-4f23-9015-eb9c0b85b021"
+tunnel_hostname: "tubagusaulia.dev"

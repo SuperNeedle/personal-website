@@ -1,0 +1,7 @@
+tunnel: {{ tunnel_id }}
+credentials-file: /home/homelab/.cloudflared/{{ tunnel_id }}.json
+
+ingress:
+  - hostname: {{ tunnel_hostname }}
+    service: http://localhost:8080
+  - service: http_status:404

@@ -1,0 +1,27 @@
+---
+- name: Ensure podman and podman-compose packages are installed
+  ansible.builtin.dnf:
+    name:
+      - podman
+      - podman-compose
+    state: present
+
+- name: Check SELinux mode
+  ansible.builtin.command: getenforce
+  register: selinux_status
+  changed_when: false
+
+- name: Confirm SELinux is in Enforcing mode
+  ansible.builtin.assert:
+    that:
+      - selinux_status.stdout == "Enforcing"
+    fail_msg: "SELinux is not in Enforcing mode. Current mode: {{ selinux_status.stdout }}"
+    success_msg: "SELinux is confirmed Enforcing."
+
+- name: Ensure /var/www directory exists with correct ownership and permissions
+  ansible.builtin.file:
+    path: /var/www
+    state: directory
+    owner: homelab
+    group: homelab
+    mode: "0755"
