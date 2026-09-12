@@ -10,6 +10,7 @@
   ansible.builtin.command: getenforce
   register: selinux_status
   changed_when: false
+  check_mode: false
 
 - name: Confirm SELinux is in Enforcing mode
   ansible.builtin.assert:
