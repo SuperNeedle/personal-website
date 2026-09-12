@@ -26,17 +26,11 @@
     chdir: /var/www/personal-website
   become_user: homelab
 
-# Known gap: cloudflared binary installation is not yet scripted via Ansible.
-# It must be manually installed to /usr/local/bin/cloudflared prior to running this playbook.
-- name: Verify /usr/local/bin/cloudflared binary exists
-  ansible.builtin.stat:
-    path: /usr/local/bin/cloudflared
-  register: cloudflared_bin_stat
-
-- name: Fail if cloudflared binary is missing
-  ansible.builtin.fail:
-    msg: "/usr/local/bin/cloudflared binary not found. Please install cloudflared manually first (e.g. curl -L --output /usr/local/bin/cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 && chmod +x /usr/local/bin/cloudflared)."
-  when: not cloudflared_bin_stat.stat.exists
+- name: Ensure cloudflared binary is installed
+  ansible.builtin.get_url:
+    url: https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+    dest: /usr/local/bin/cloudflared
+    mode: '0755'
 
 - name: Apply correct SELinux context to cloudflared binary
   ansible.builtin.command: restorecon -v /usr/local/bin/cloudflared
