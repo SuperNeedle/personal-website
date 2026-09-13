@@ -20,8 +20,22 @@
 # Using ansible.builtin.command with chdir instead of community.general.podman_compose
 # because podman-compose is already installed as a native DNF package in the common role,
 # avoiding external Ansible Galaxy collection dependencies while running with non-root homelab privileges.
-- name: Build and start container services via podman-compose
-  ansible.builtin.command: podman-compose up -d --build
+# podman-compose up -d --build alone does not reliably recreate the running container from a freshly built image — an explicit down before build/up guarantees the container is recreated. Confirmed via testing on 2026-09-13; normal layer caching (no --no-cache needed) works correctly once this pattern is used.
+- name: Tear down existing container services via podman-compose
+  ansible.builtin.command: podman-compose down
+  args:
+    chdir: /var/www/personal-website
+  become_user: homelab
+  failed_when: false
+
+- name: Build container images via podman-compose
+  ansible.builtin.command: podman-compose build
+  args:
+    chdir: /var/www/personal-website
+  become_user: homelab
+
+- name: Start container services via podman-compose
+  ansible.builtin.command: podman-compose up -d
   args:
     chdir: /var/www/personal-website
   become_user: homelab
