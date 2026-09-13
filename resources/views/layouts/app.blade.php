@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ?? 'TBA DEV' }}</title>
-    <meta name="description" content="Portfolio, systems architecture registry, and engineering telemetry by TBA. — test">
+    <meta name="description" content="Portfolio, systems architecture registry, and engineering telemetry by TBA.">
 
     <!-- Fonts: Archivo, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
