@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'TBA' }}</title>
+    <title>{{ $title ?? 'TBA DEV' }}</title>
     <meta name="description" content="Portfolio, systems architecture registry, and engineering telemetry by TBA.">
 
     <!-- Fonts: Archivo, Inter, JetBrains Mono -->
