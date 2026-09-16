@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Integration
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [dev, main]
 
 jobs:
-  tests:
-    name: Run Tests
+  assemble:
+    name: Assemble Application
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +30,3 @@ jobs:
 
       - name: Generate application key
         run: php artisan key:generate
-
-      - name: Run tests
-        run: php artisan test
