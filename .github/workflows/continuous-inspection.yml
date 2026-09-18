@@ -1,4 +1,4 @@
-name: Continuous Inspection
+name: Continuous Inspection (Composer Audit)
 
 on:
   push:
