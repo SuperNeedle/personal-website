@@ -27,6 +27,7 @@ Homestead.yaml
 Thumbs.db
 AGENTS.md
 /docs/PROJECT_TRACKER.md
-/docs/DOCUMENTATION.md
+/docs/SOFTWARE_DOCUMENTATION.md
+/docs/SERVER_DOCUMENTATION.md
 /database/*.sqlite
 /database/*.sqlite-journal
